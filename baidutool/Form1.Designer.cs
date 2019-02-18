@@ -24,14 +24,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            //this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,8 +52,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.keyImport = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.clear = new System.Windows.Forms.Button();
             this.txtKey = new System.Windows.Forms.TextBox();
@@ -66,6 +65,12 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lyqaccount = new System.Windows.Forms.TextBox();
+            this.lyqpwd = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lyqip = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -117,11 +122,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // timer1
-            // 
-            //this.timer1.Interval = 10000;
-            //this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.button5);
@@ -167,6 +167,12 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Silver;
+            this.groupBox5.Controls.Add(this.lyqip);
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.lyqpwd);
+            this.groupBox5.Controls.Add(this.lyqaccount);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.label8);
             this.groupBox5.Controls.Add(this.count);
@@ -197,7 +203,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(750, 98);
+            this.label10.Location = new System.Drawing.Point(732, 98);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 12);
             this.label10.TabIndex = 22;
@@ -206,7 +212,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(580, 98);
+            this.label8.Location = new System.Drawing.Point(562, 98);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 21;
@@ -214,7 +220,7 @@
             // 
             // count
             // 
-            this.count.Location = new System.Drawing.Point(651, 95);
+            this.count.Location = new System.Drawing.Point(633, 95);
             this.count.Name = "count";
             this.count.Size = new System.Drawing.Size(93, 21);
             this.count.TabIndex = 20;
@@ -223,7 +229,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(773, 67);
+            this.label9.Location = new System.Drawing.Point(755, 67);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 12);
             this.label9.TabIndex = 19;
@@ -232,7 +238,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(750, 67);
+            this.label7.Location = new System.Drawing.Point(732, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 12);
             this.label7.TabIndex = 17;
@@ -241,7 +247,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(692, 67);
+            this.label6.Location = new System.Drawing.Point(674, 67);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(11, 12);
             this.label6.TabIndex = 16;
@@ -249,24 +255,24 @@
             // 
             // txtRoundB
             // 
-            this.txtRoundB.Location = new System.Drawing.Point(651, 64);
+            this.txtRoundB.Location = new System.Drawing.Point(633, 64);
             this.txtRoundB.Name = "txtRoundB";
             this.txtRoundB.Size = new System.Drawing.Size(35, 21);
             this.txtRoundB.TabIndex = 15;
-            this.txtRoundB.Text = "3";
+            this.txtRoundB.Text = "5";
             // 
             // txtRoundE
             // 
-            this.txtRoundE.Location = new System.Drawing.Point(709, 64);
+            this.txtRoundE.Location = new System.Drawing.Point(691, 64);
             this.txtRoundE.Name = "txtRoundE";
             this.txtRoundE.Size = new System.Drawing.Size(35, 21);
             this.txtRoundE.TabIndex = 14;
-            this.txtRoundE.Text = "5";
+            this.txtRoundE.Text = "10";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(692, 36);
+            this.label5.Location = new System.Drawing.Point(674, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 12);
             this.label5.TabIndex = 13;
@@ -274,24 +280,24 @@
             // 
             // txtKeyE
             // 
-            this.txtKeyE.Location = new System.Drawing.Point(709, 31);
+            this.txtKeyE.Location = new System.Drawing.Point(691, 31);
             this.txtKeyE.Name = "txtKeyE";
             this.txtKeyE.Size = new System.Drawing.Size(35, 21);
             this.txtKeyE.TabIndex = 12;
-            this.txtKeyE.Text = "5";
+            this.txtKeyE.Text = "10";
             // 
             // txtKeyB
             // 
-            this.txtKeyB.Location = new System.Drawing.Point(651, 31);
+            this.txtKeyB.Location = new System.Drawing.Point(633, 31);
             this.txtKeyB.Name = "txtKeyB";
             this.txtKeyB.Size = new System.Drawing.Size(35, 21);
             this.txtKeyB.TabIndex = 11;
-            this.txtKeyB.Text = "3";
+            this.txtKeyB.Text = "5";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(773, 36);
+            this.label4.Location = new System.Drawing.Point(755, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 12);
             this.label4.TabIndex = 10;
@@ -300,7 +306,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(750, 34);
+            this.label3.Location = new System.Drawing.Point(732, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 9;
@@ -309,7 +315,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(592, 67);
+            this.label2.Location = new System.Drawing.Point(574, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 8;
@@ -318,7 +324,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(580, 36);
+            this.label1.Location = new System.Drawing.Point(562, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 7;
@@ -336,48 +342,59 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.radioButton3);
+            this.groupBox6.Controls.Add(this.radioButton4);
             this.groupBox6.Controls.Add(this.radioButton2);
+            this.groupBox6.Controls.Add(this.radioButton3);
             this.groupBox6.Controls.Add(this.radioButton1);
-            this.groupBox6.Location = new System.Drawing.Point(411, 10);
+            this.groupBox6.Location = new System.Drawing.Point(397, 10);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(146, 144);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "ip";
             // 
-            // radioButton3
+            // radioButton4
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(20, 71);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(83, 16);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "路由器换ip";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Checked = true;
+            this.radioButton4.Location = new System.Drawing.Point(20, 22);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(59, 16);
+            this.radioButton4.TabIndex = 1;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "不换IP";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(20, 112);
+            this.radioButton2.Location = new System.Drawing.Point(20, 66);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(83, 16);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "切换动态ip";
+            this.radioButton2.TabIndex = 3;
+            this.radioButton2.Text = "路由器换IP";
             this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(20, 112);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(83, 16);
+            this.radioButton3.TabIndex = 4;
+            this.radioButton3.Text = "切换动态IP";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(20, 24);
+            this.radioButton1.Location = new System.Drawing.Point(20, 44);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "宽带换ip";
+            this.radioButton1.TabIndex = 2;
+            this.radioButton1.Text = "宽带换IP";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             // 
             // clear
             // 
@@ -468,6 +485,54 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(879, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "路由器账号";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(879, 94);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "路由器密码";
+            // 
+            // lyqaccount
+            // 
+            this.lyqaccount.Location = new System.Drawing.Point(950, 58);
+            this.lyqaccount.Name = "lyqaccount";
+            this.lyqaccount.Size = new System.Drawing.Size(126, 21);
+            this.lyqaccount.TabIndex = 25;
+            // 
+            // lyqpwd
+            // 
+            this.lyqpwd.Location = new System.Drawing.Point(950, 88);
+            this.lyqpwd.Name = "lyqpwd";
+            this.lyqpwd.Size = new System.Drawing.Size(126, 21);
+            this.lyqpwd.TabIndex = 26;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(879, 31);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 12);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "路由器IP";
+            // 
+            // lyqip
+            // 
+            this.lyqip.Location = new System.Drawing.Point(950, 27);
+            this.lyqip.Name = "lyqip";
+            this.lyqip.Size = new System.Drawing.Size(126, 21);
+            this.lyqip.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -507,7 +572,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private AxSHDocVw.AxWebBrowser axWebBrowser1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -524,11 +589,18 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox count;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.TextBox lyqpwd;
+        private System.Windows.Forms.TextBox lyqaccount;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox lyqip;
+        private System.Windows.Forms.Label label14;
     }
 }
 

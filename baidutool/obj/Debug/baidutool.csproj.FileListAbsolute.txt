@@ -15,7 +15,6 @@ G:\Code\baidutool\baidutool\obj\Debug\baidutool.pdb
 G:\Code\baidutool\baidutool\bin\Debug\NSoup.dll
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.csproj.CopyComplete
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.csprojAssemblyReference.cache
-G:\Code\baidutool\baidutool\obj\Debug\baidutool.TaskTimer.resources
 D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.exe.config
 D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.exe
 D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.pdb
@@ -34,3 +33,4 @@ D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.CoreCompileInputs
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.CopyComplete
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.exe
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.pdb
+G:\Code\baidutool\baidutool\obj\Debug\baidutool.LoaderForm.resources

@@ -75,7 +75,7 @@ namespace baidutool
                 WebProxy proxyObject = new WebProxy(ip, port);// port为端口号 整数型
                 Req = WebRequest.Create("https://www.baidu.com") as HttpWebRequest;
                 Req.Proxy = proxyObject; //设置代理
-                Req.Timeout = 1000;   //超时
+                Req.Timeout = 3000;   //超时
                 Resp = (HttpWebResponse)Req.GetResponse();
                 Encoding bin = Encoding.GetEncoding("UTF-8");
                 using (StreamReader sr = new StreamReader(Resp.GetResponseStream(), bin))
@@ -135,45 +135,51 @@ namespace baidutool
         #endregion
 
         #region 路由器换ip
-        public static bool Disconnect(string ip,string user,string pwd)
+        public static string Disconnect(string ip,string user,string pwd)
         {
-            string url = "断 线";
-            string uri = ip + "/userRpm/StatusRpm.htm?Disconnect=" + System.Web.HttpUtility.UrlEncode(url, System.Text.Encoding.GetEncoding("gb2312")) + "&wan=1";
-            string sUser = user;
-            string sPwd = pwd;
-            string sDomain = "";
-            NetworkCredential oCredential;
-            HttpWebRequest oRequest = (System.Net.HttpWebRequest)WebRequest.Create(uri);
-            if (oRequest != null)
+            try
             {
-                oRequest.ProtocolVersion = HttpVersion.Version11;// send request
-                oRequest.Method = "GET";
-                oRequest.ContentType = "application/x-www-form-urlencoded";
-                oRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB6.4; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
-                oRequest.Referer = ip;
+                string url = "断 线";
+                string uri = "http://" + ip + "/userRpm/StatusRpm.htm?Disconnect=" + System.Web.HttpUtility.UrlEncode(url, System.Text.Encoding.GetEncoding("gb2312")) + "&wan=1";
+                string sUser = user;
+                string sPwd = pwd;
+                string sDomain = "";
+                NetworkCredential oCredential;
+                HttpWebRequest oRequest = (System.Net.HttpWebRequest)WebRequest.Create(uri);
+                if (oRequest != null)
+                {
+                    oRequest.ProtocolVersion = HttpVersion.Version11;// send request
+                    oRequest.Method = "GET";
+                    oRequest.ContentType = "application/x-www-form-urlencoded";
+                    oRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB6.4; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
+                    oRequest.Referer = ip;
 
-                if (sUser != String.Empty)
-                {
-                    oCredential = new NetworkCredential(sUser, sPwd, sDomain);
-                    oRequest.Credentials = oCredential.GetCredential(new Uri(uri), String.Empty);
+                    if (sUser != String.Empty)
+                    {
+                        oCredential = new NetworkCredential(sUser, sPwd, sDomain);
+                        oRequest.Credentials = oCredential.GetCredential(new Uri(uri), String.Empty);
+                    }
+                    else
+                    {
+                        oRequest.Credentials = CredentialCache.DefaultCredentials;
+                    }
+                    StreamReader sr = new StreamReader(oRequest.GetResponse().GetResponseStream(), System.Text.Encoding.Default);
+                    string line = sr.ReadToEnd();
+                    sr.Close();
+                    if (line.IndexOf("LAN口状态") > -1)//登录成功
+                    {
+                        return "success";
+                    }
+                    else
+                    {
+                        return "fail";
+                    }
                 }
-                else
-                {
-                    oRequest.Credentials = CredentialCache.DefaultCredentials;
-                }
-                StreamReader sr = new StreamReader(oRequest.GetResponse().GetResponseStream(), System.Text.Encoding.Default);
-                string line = sr.ReadToEnd();
-                sr.Close();
-                if (line.IndexOf("LAN口状态") > -1)//登录成功
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            }catch(Exception ex)
+            {
+                return "fial:"+ex.Message;
             }
-            return false;
+            return "fail";
         }
         #endregion
 

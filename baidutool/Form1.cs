@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -31,7 +30,6 @@ namespace baidutool
         ArrayList arrText = new ArrayList();
         List<String> keyList = new List<String>();
         int Total = 0;
-        int i, k = 0;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtKey;
         private const string TitleInfo = "程序制作：iCC";
@@ -55,38 +53,48 @@ namespace baidutool
         private void StartShuaUA(List<string> list,int roundI,int keyI,int max)
         {
             // 等待“停止”信号，如果没有收到信号则执行 
-            while (!canStop)
+            roundI = roundI * 1000;
+            keyI = keyI * 1000;
+            if (arrText.Count > 0 && list.Count > 0 && max > 0)
             {
-                roundI = roundI * 1000;
-                keyI = keyI * 1000;
-                if (arrText.Count > 0 && list.Count > 0 && max > 0)
+                for (int q = 1; q <= max; q++)
                 {
-                    for (int q = 1; q <= max; q++)
+                    if (canStop)
+                        break;
+                    for (int j = 0; j < arrText.Count; j++)
                     {
-                        for (int j = 0; j < arrText.Count; j++)
+                        //this.listBox1.Invoke(new Action(()=> listBox1.SetSelected(j, true)));
+                        if (Utils.RefreshIESettings(arrText[j].ToString()))
                         {
-                            //this.listBox1.Invoke(new Action(()=> listBox1.SetSelected(j, true)));
-                            if (Utils.RefreshIESettings(arrText[j].ToString()))
+                            foreach (var item in list)
                             {
-                                foreach (var item in list)
-                                {
-                                    toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问网站";
-                                    string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
-                                    System.Object nullObject = 0;
-                                    string strTemp = String.Empty;
-                                    System.Object nullObjStr = strTemp;
-                                    axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
-                                    Thread.Sleep(keyI);
-                                }
+                                // 等待“停止”信号，如果没有收到信号则执行 
+                                if (canStop)
+                                    break;
+                                toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问";
+                                string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
+                                System.Object nullObject = 0;
+                                string strTemp = String.Empty;
+                                System.Object nullObjStr = strTemp;
+                                axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
+                                Thread.Sleep(keyI);
                             }
                         }
-                        Thread.Sleep(roundI);
                     }
+                    Thread.Sleep(roundI);
                 }
-                else
+            }
+            else
+            {
+                MessageBox.Show("请输入词条并设置最大次数！"); canStop = true;
+                button2.Invoke(new EventHandler(delegate
                 {
-                    MessageBox.Show("请获取代理地址或导入代理地址后操作！");
-                }
+                    button2.Text = "开始刷";
+                }));
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -111,7 +119,7 @@ namespace baidutool
                         // 等待“停止”信号，如果没有收到信号则执行 
                         if (canStop)
                             break;
-                        toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问网站";
+                        toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问";
                         string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                         System.Object nullObject = 0;
                         string strTemp = String.Empty;
@@ -125,58 +133,80 @@ namespace baidutool
             else
             {
                 MessageBox.Show("请输入词条并设置最大次数！");
+                canStop = true;
+                button2.Invoke(new EventHandler(delegate
+                {
+                    button2.Text = "开始刷";
+                }));
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
             canStop = false;
         }
-
-
+        
         /// <summary>
         /// 路由器刷
         /// </summary>
-        private void StartShuaLYQ(List<string> list, int roundI, int keyI, int max)
+        private void StartShuaLYQ(List<string> list, int roundI, int keyI, int max,string account,string pwd,string ip)
         {
             // 等待“停止”信号，如果没有收到信号则执行 
-            while (!canStop)
+            roundI = roundI * 1000;
+            keyI = keyI * 1000;
+            if (list.Count > 0 && max > 0)
             {
-                roundI = roundI * 1000;
-                keyI = keyI * 1000;
-                if (arrText.Count > 0 && list.Count > 0 && max > 0)
+                for (int q = 1; q <= max; q++)
                 {
-                    for (int q = 1; q <= max; q++)
+                    if (canStop)
+                        break;
+                    foreach (var item in list)
                     {
-                        for (int j = 0; j < arrText.Count; j++)
-                        {
-                            //this.listBox1.Invoke(new Action(()=> listBox1.SetSelected(j, true)));
-                            if (Utils.RefreshIESettings(arrText[j].ToString()))
-                            {
-                                foreach (var item in list)
-                                {
-                                    toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问网站";
-                                    string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
-                                    System.Object nullObject = 0;
-                                    string strTemp = String.Empty;
-                                    System.Object nullObjStr = strTemp;
-                                    axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
-                                    Thread.Sleep(keyI);
-                                }
-                            }
-                        }
-                        Thread.Sleep(roundI);
+                        // 等待“停止”信号，如果没有收到信号则执行 
+                        if (canStop)
+                            break;
+                        toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用路由器换ip访问";
+                        string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
+                        System.Object nullObject = 0;
+                        string strTemp = String.Empty;
+                        System.Object nullObjStr = strTemp;
+                        axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
+                        Thread.Sleep(keyI);
                     }
+                    string result = Utils.Disconnect(ip, account, pwd);
+                    if (!result.Contains("success"))
+                    {
+                        MessageBox.Show(result);
+                        canStop = true;
+                        button2.Invoke(new EventHandler(delegate
+                        {
+                            button2.Text = "开始刷";
+                        }));
+                        toolStripStatusLabel1.Text = "";
+                        button1.Enabled = true;
+                        button3.Enabled = true;
+                        return;
+                    }
+                    Thread.Sleep(roundI);
                 }
-                else
-                {
-                    MessageBox.Show("请获取代理地址或导入代理地址后操作！");
-                }
+            }
+            else
+            {
+                MessageBox.Show("请输入词条并设置最大次数！");
+                canStop = true;
+                button2.Text = "开始刷";
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
             canStop = false;
         }
-
-
+        
         /// <summary>
         /// 宽带刷
         /// </summary>
@@ -198,7 +228,7 @@ namespace baidutool
                             {
                                 foreach (var item in list)
                                 {
-                                    toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问网站";
+                                    toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问";
                                     string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                                     System.Object nullObject = 0;
                                     string strTemp = String.Empty;
@@ -214,6 +244,15 @@ namespace baidutool
                 else
                 {
                     MessageBox.Show("请获取代理地址或导入代理地址后操作！");
+                    canStop = true;
+                    button2.Invoke(new EventHandler(delegate
+                    {
+                        button2.Text = "开始刷";
+                    }));
+                    toolStripStatusLabel1.Text = "";
+                    button1.Enabled = true;
+                    button3.Enabled = true;
+                    button5.Enabled = true;
                 }
             }
             // 此时已经收到停止信号，可以在此释放资源并 
@@ -228,7 +267,6 @@ namespace baidutool
         {
             arrText.Clear();
             listBox1.Items.Clear();
-            i = 0;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string strPath, strLine = "";
@@ -239,7 +277,6 @@ namespace baidutool
                     strLine = sr.ReadLine();
                     if (strLine != null)
                     {
-                        i += 1;
                         arrText.Add(strLine);
                         listBox1.Items.Add(strLine);
                     }
@@ -267,13 +304,16 @@ namespace baidutool
             Total = listBox1.Items.Count;
             if (button2.Text == "开始刷")
             {
-                if (i == 0 && Total == 0)
+                if (Total == 0 && type == 3)
                 {
                     MessageBox.Show("请获取代理地址或导入代理地址后操作！");
                     return;
                 }
-                button2.Text = "停止刷";
-
+                if ((string.IsNullOrEmpty(lyqaccount.Text) || string.IsNullOrEmpty(lyqpwd.Text) || string.IsNullOrEmpty(lyqip.Text)) && type == 2)
+                {
+                    MessageBox.Show("请填写路由器ip，账号和密码！");
+                    return;
+                }
                 int roundB = 0, roundE = 0;
                 string roundBStr = this.txtRoundB.Text;
                 string roundEStr = this.txtRoundE.Text;
@@ -282,10 +322,15 @@ namespace baidutool
                 int roundI = new Random().Next(roundB, roundE);
                 if (roundB <= 0 || roundE <= 0 || (roundE - roundB) <= 0)
                 {
-                    MessageBox.Show("error");
+                    MessageBox.Show("间隔时间不可为0或开始间隔秒数要大于结束间隔秒数！");
                     return;
                 }
 
+                if ((roundB < 10 || roundE < 10 || (roundE - roundB) <= 0) && type == 2)
+                {
+                    MessageBox.Show("路由器换ip：每轮间隔时间需要大于10秒或开始间隔秒数要大于结束间隔秒数！");
+                    return;
+                }
                 int keyB = 0, keyE = 0;
                 string keyBStr = this.txtKeyB.Text;
                 string keyEStr = this.txtKeyE.Text;
@@ -294,7 +339,7 @@ namespace baidutool
                 int keyI = new Random().Next(keyB, keyE);
                 if (keyB <= 0 || keyE <= 0 || (keyE - keyB) <= 0)
                 {
-                    MessageBox.Show("error");
+                    MessageBox.Show("间隔时间不可为0或开始间隔秒数要大于结束间隔秒数！");
                     return;
                 }
                 int count = 0;
@@ -302,20 +347,22 @@ namespace baidutool
                 int.TryParse(countStr, out count);
                 if (count <= 0)
                 {
-                    MessageBox.Show("");
+                    MessageBox.Show("最大次数不可为0！");
                     return;
                 }
 
                 if (keyList.Count < 1)
                     getKeyList();
 
+                button2.Text = "停止刷";
+                canStop = false;
                 switch (type)
                 {
                     case 1:
                         new Thread(() => StartShuaKD(keyList, roundI, keyI, count)).Start();
                         break;
                     case 2:
-                        new Thread(() => StartShuaLYQ(keyList, roundI, keyI, count)).Start();
+                        new Thread(() => StartShuaLYQ(keyList, roundI, keyI, count, lyqaccount.Text,lyqpwd.Text,lyqip.Text)).Start();
                         break;
                     case 3:
                         new Thread(() => StartShuaUA(keyList, roundI, keyI, count)).Start();
@@ -326,6 +373,7 @@ namespace baidutool
                 }
                 button1.Enabled = false;
                 button3.Enabled = false;
+                button5.Enabled = false;
             }
             else
             {
@@ -334,6 +382,7 @@ namespace baidutool
                 toolStripStatusLabel1.Text = "";
                 button1.Enabled = true;
                 button3.Enabled = true;
+                button5.Enabled = true;
             }
         }
 
@@ -343,11 +392,10 @@ namespace baidutool
         private void button3_Click(object sender, System.EventArgs e)
         {
             arrText.Clear();
-            i = 0;
             listBox1.Items.Clear();
             #region q
 
-            for (int k = 1; k <= 8; k++)
+            for (int k = 1; k <= 1; k++)
             {
                 string Url = "https://www.xicidaili.com/nn/" + k;
                 try
@@ -369,12 +417,8 @@ namespace baidutool
                                     int port = 0;
                                     string portStr = tdEle[2].Text();
                                     int.TryParse(portStr, out port);
-                                    if (Utils.VerIP(ip, port))
-                                    {
-                                        arrText.Add(ip + ":" + port);
-                                        i += 1;
-                                        listBox1.Items.Add(ip + ":" + port);
-                                    }
+                                    arrText.Add(ip + ":" + port);
+                                    listBox1.Items.Add(ip + ":" + port);
                                 }
                             }
                         }
@@ -411,6 +455,7 @@ namespace baidutool
         private void clear_Click(object sender, EventArgs e)
         {
             this.txtKey.Clear();
+            keyList.Clear();
         }
 
         /// <summary>
@@ -418,12 +463,12 @@ namespace baidutool
         /// </summary>
         private void button5_Click(object sender, EventArgs e)
         {
-            if(arrText.Count < 1)
+            if (arrText.Count < 1)
             {
                 MessageBox.Show("请获取代理地址或导入代理地址后操作！");
                 return;
             }
-            i = 0;
+            LoadingHelper.ShowLoadingScreen();
             ArrayList arrayList = new ArrayList();
             foreach (var item in arrText)
             {
@@ -434,7 +479,6 @@ namespace baidutool
                 int.TryParse(portStr, out port);
                 if (Utils.VerIP(ip, port))
                 {
-                    i++;
                     arrayList.Add(item);
                 }
             }
@@ -445,6 +489,8 @@ namespace baidutool
                 listBox1.Items.Add(item);
             }
             arrText = arrayList;
+
+            LoadingHelper.CloseForm();
         }
         
 
