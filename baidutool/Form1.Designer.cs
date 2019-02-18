@@ -31,7 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            //this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -119,8 +119,8 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            //this.timer1.Interval = 10000;
+            //this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // groupBox4
             // 

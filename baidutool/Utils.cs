@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -96,6 +97,95 @@ namespace baidutool
             {
                 return false;
             }
+        }
+        
+        #region 代理换ip
+        [DllImport("wininet.dll", SetLastError = true)]
+        public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
+
+        public static bool RefreshIESettings(string strProxy)
+        {
+            const int INTERNET_OPTION_PROXY = 38;
+            const int INTERNET_OPEN_TYPE_PROXY = 3;
+
+            Struct_INTERNET_PROXY_INFO struct_IPI;
+
+            // Filling in structure 
+            struct_IPI.dwAccessType = INTERNET_OPEN_TYPE_PROXY;
+            struct_IPI.proxy = Marshal.StringToHGlobalAnsi(strProxy);
+            struct_IPI.proxyBypass = Marshal.StringToHGlobalAnsi("local");
+
+            // Allocating memory 
+            IntPtr intptrStruct = Marshal.AllocCoTaskMem(Marshal.SizeOf(struct_IPI));
+
+            // Converting structure to IntPtr 
+            Marshal.StructureToPtr(struct_IPI, intptrStruct, true);
+
+            bool iReturn = InternetSetOption(IntPtr.Zero, INTERNET_OPTION_PROXY, intptrStruct, Marshal.SizeOf(struct_IPI));
+            return iReturn;
+        }
+        
+        //定义结构体代理信息
+        public struct Struct_INTERNET_PROXY_INFO
+        {
+            public int dwAccessType;
+            public IntPtr proxy;
+            public IntPtr proxyBypass;
+        };
+        #endregion
+
+        #region 路由器换ip
+        public static bool Disconnect(string ip,string user,string pwd)
+        {
+            string url = "断 线";
+            string uri = ip + "/userRpm/StatusRpm.htm?Disconnect=" + System.Web.HttpUtility.UrlEncode(url, System.Text.Encoding.GetEncoding("gb2312")) + "&wan=1";
+            string sUser = user;
+            string sPwd = pwd;
+            string sDomain = "";
+            NetworkCredential oCredential;
+            HttpWebRequest oRequest = (System.Net.HttpWebRequest)WebRequest.Create(uri);
+            if (oRequest != null)
+            {
+                oRequest.ProtocolVersion = HttpVersion.Version11;// send request
+                oRequest.Method = "GET";
+                oRequest.ContentType = "application/x-www-form-urlencoded";
+                oRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB6.4; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
+                oRequest.Referer = ip;
+
+                if (sUser != String.Empty)
+                {
+                    oCredential = new NetworkCredential(sUser, sPwd, sDomain);
+                    oRequest.Credentials = oCredential.GetCredential(new Uri(uri), String.Empty);
+                }
+                else
+                {
+                    oRequest.Credentials = CredentialCache.DefaultCredentials;
+                }
+                StreamReader sr = new StreamReader(oRequest.GetResponse().GetResponseStream(), System.Text.Encoding.Default);
+                string line = sr.ReadToEnd();
+                sr.Close();
+                if (line.IndexOf("LAN口状态") > -1)//登录成功
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+        #region 宽带换ip
+
+        #endregion
+
+        public static string getIp()
+        {
+            System.Net.IPHostEntry myEntry = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+            string ipAddress = myEntry.AddressList[0].ToString();
+            return ipAddress;
         }
     }
 }
