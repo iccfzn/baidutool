@@ -27,10 +27,10 @@ D:\Code\private\baidutool\baidutool\obj\Debug\AxInterop.SHDocVw.dll
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.ResolveComReference.cache
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.Form1.resources
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.Properties.Resources.resources
-D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.TaskTimer.resources
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.GenerateResource.cache
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.CoreCompileInputs.cache
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.csproj.CopyComplete
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.exe
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.pdb
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.LoaderForm.resources
+D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.LoaderForm.resources

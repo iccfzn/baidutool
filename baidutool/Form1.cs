@@ -83,6 +83,14 @@ namespace baidutool
                     }
                     Thread.Sleep(roundI);
                 }
+                button2.Invoke(new EventHandler(delegate
+                {
+                    button2.Text = "开始刷";
+                }));
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             else
             {
@@ -127,8 +135,16 @@ namespace baidutool
                         axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
                         Thread.Sleep(keyI);
                     }
+                    Thread.Sleep(roundI);
                 }
-                Thread.Sleep(roundI);
+                button2.Invoke(new EventHandler(delegate
+                {
+                    button2.Text = "开始刷";
+                }));
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             else
             {
@@ -191,6 +207,14 @@ namespace baidutool
                     }
                     Thread.Sleep(roundI);
                 }
+                button2.Invoke(new EventHandler(delegate
+                {
+                    button2.Text = "开始刷";
+                }));
+                toolStripStatusLabel1.Text = "";
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
             }
             else
             {
@@ -212,52 +236,7 @@ namespace baidutool
         /// </summary>
         private void StartShuaKD(List<string> list, int roundI, int keyI, int max)
         {
-            // 等待“停止”信号，如果没有收到信号则执行 
-            while (!canStop)
-            {
-                roundI = roundI * 1000;
-                keyI = keyI * 1000;
-                if (arrText.Count > 0 && list.Count > 0 && max > 0)
-                {
-                    for (int q = 1; q <= max; q++)
-                    {
-                        for (int j = 0; j < arrText.Count; j++)
-                        {
-                            //this.listBox1.Invoke(new Action(()=> listBox1.SetSelected(j, true)));
-                            if (Utils.RefreshIESettings(arrText[j].ToString()))
-                            {
-                                foreach (var item in list)
-                                {
-                                    toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问";
-                                    string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
-                                    System.Object nullObject = 0;
-                                    string strTemp = String.Empty;
-                                    System.Object nullObjStr = strTemp;
-                                    axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
-                                    Thread.Sleep(keyI);
-                                }
-                            }
-                        }
-                        Thread.Sleep(roundI);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("请获取代理地址或导入代理地址后操作！");
-                    canStop = true;
-                    button2.Invoke(new EventHandler(delegate
-                    {
-                        button2.Text = "开始刷";
-                    }));
-                    toolStripStatusLabel1.Text = "";
-                    button1.Enabled = true;
-                    button3.Enabled = true;
-                    button5.Enabled = true;
-                }
-            }
-            // 此时已经收到停止信号，可以在此释放资源并 
-            // 初始化变量 
-            canStop = false;
+           
         }
 
         /// <summary>
@@ -463,36 +442,62 @@ namespace baidutool
         /// </summary>
         private void button5_Click(object sender, EventArgs e)
         {
-            if (arrText.Count < 1)
+            if (button5.Text == "验证IP")
             {
-                MessageBox.Show("请获取代理地址或导入代理地址后操作！");
-                return;
-            }
-            LoadingHelper.ShowLoadingScreen();
-            ArrayList arrayList = new ArrayList();
-            foreach (var item in arrText)
-            {
-                string[] data = item.ToString().Split(':');
-                string ip = data[0];
-                string portStr = data[1];
-                int port = 0;
-                int.TryParse(portStr, out port);
-                if (Utils.VerIP(ip, port))
+                if (arrText.Count < 1)
                 {
-                    arrayList.Add(item);
+                    MessageBox.Show("请获取代理地址或导入代理地址后操作！");
+                    return;
                 }
-            }
+                button5.Text = "取消验证";
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                LoadingHelper.ShowLoadingScreen();
+                ArrayList arrayList = new ArrayList();
+                foreach (var item in arrText)
+                {
+                    string[] data = item.ToString().Split(':');
+                    string ip = data[0];
+                    string portStr = data[1];
+                    int port = 0;
+                    int.TryParse(portStr, out port);
+                    if (Utils.VerIP(ip, port))
+                    {
+                        arrayList.Add(item);
+                    }
+                }
 
-            listBox1.Items.Clear();
-            foreach (var item in arrayList)
+                listBox1.Items.Clear();
+                foreach (var item in arrayList)
+                {
+                    listBox1.Items.Add(item);
+                }
+                arrText = arrayList;
+
+                LoadingHelper.CloseForm();
+            }
+            else
             {
-                listBox1.Items.Add(item);
+                button5.Text = "验证IP";
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
             }
-            arrText = arrayList;
-
-            LoadingHelper.CloseForm();
         }
-        
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("关闭窗体后，程序会退出！！", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                e.Cancel = false;
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
 
         private List<String> getKeyList()
         {
