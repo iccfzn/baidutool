@@ -2,3 +2,6 @@
 /.vs/baidutool
 /.vs
 /baidutool/obj
+/baidutool/bin/Debug
+/baidutool/publish
+/baidutool/baidutool_TemporaryKey.pfx
