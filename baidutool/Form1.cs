@@ -12,6 +12,7 @@ using System.Text;
 using System.Net;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace baidutool
 {
@@ -27,7 +28,7 @@ namespace baidutool
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button3;
-        ArrayList arrText = new ArrayList();
+        List<String> arrText = new List<String>();
         List<String> keyList = new List<String>();
         int Total = 0;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -88,9 +89,18 @@ namespace baidutool
                     button2.Text = "开始刷";
                 }));
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
             }
             else
             {
@@ -100,9 +110,19 @@ namespace baidutool
                     button2.Text = "开始刷";
                 }));
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
+                
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -142,9 +162,18 @@ namespace baidutool
                     button2.Text = "开始刷";
                 }));
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
             }
             else
             {
@@ -155,9 +184,18 @@ namespace baidutool
                     button2.Text = "开始刷";
                 }));
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -201,8 +239,18 @@ namespace baidutool
                             button2.Text = "开始刷";
                         }));
                         toolStripStatusLabel1.Text = "";
-                        button1.Enabled = true;
-                        button3.Enabled = true;
+                        button1.Invoke(new EventHandler(delegate
+                        {
+                            button1.Enabled = true;
+                        }));
+                        button3.Invoke(new EventHandler(delegate
+                        {
+                            button3.Enabled = true;
+                        }));
+                        button5.Invoke(new EventHandler(delegate
+                        {
+                            button5.Enabled = true;
+                        }));
                         return;
                     }
                     Thread.Sleep(roundI);
@@ -212,9 +260,18 @@ namespace baidutool
                     button2.Text = "开始刷";
                 }));
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
             }
             else
             {
@@ -222,9 +279,18 @@ namespace baidutool
                 canStop = true;
                 button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
-                button1.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                button1.Invoke(new EventHandler(delegate
+                {
+                    button1.Enabled = true;
+                }));
+                button3.Invoke(new EventHandler(delegate
+                {
+                    button3.Enabled = true;
+                }));
+                button5.Invoke(new EventHandler(delegate
+                {
+                    button5.Enabled = true;
+                }));
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -449,40 +515,40 @@ namespace baidutool
                     MessageBox.Show("请获取代理地址或导入代理地址后操作！");
                     return;
                 }
-                button5.Text = "取消验证";
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
                 LoadingHelper.ShowLoadingScreen();
-                ArrayList arrayList = new ArrayList();
-                foreach (var item in arrText)
-                {
-                    string[] data = item.ToString().Split(':');
-                    string ip = data[0];
-                    string portStr = data[1];
-                    int port = 0;
-                    int.TryParse(portStr, out port);
-                    if (Utils.VerIP(ip, port))
-                    {
-                        arrayList.Add(item);
-                    }
-                }
-
+                List<String> arrayList = new List<String>();
+                arrayList = new List<string>(arrText);
+                int threadCount = arrayList.Count > 20 ? 20 : arrText.Count;
+                int single = arrayList.Count / threadCount;
+                if (arrayList.Count % threadCount > 0)
+                    single++;
+                arrText.Clear();
                 listBox1.Items.Clear();
-                foreach (var item in arrayList)
+                for (int i = 0; i < threadCount; i++)
                 {
-                    listBox1.Items.Add(item);
-                }
-                arrText = arrayList;
+                    List<string> newText = arrayList.Skip(((i+1) - 1) * single).Take(single).ToList();
 
+                    new Thread(() =>
+                    {
+                        toolStripStatusLabel1.Text = "后台正在验证ip...";
+                        foreach (var item in newText)
+                        {
+                            string[] data = item.ToString().Split(':');
+                            string ip = data[0];
+                            string portStr = data[1];
+                            int port = 0;
+                            int.TryParse(portStr, out port);
+                            if (Utils.VerIP(ip, port))
+                            {
+                                listBox1.Invoke(new Action(() => listBox1.Items.Add(item)));
+                                arrText.Add(item);
+                            }
+                        }
+                        toolStripStatusLabel1.Text = "";
+                    }
+                    ).Start();  
+                }
                 LoadingHelper.CloseForm();
-            }
-            else
-            {
-                button5.Text = "验证IP";
-                button1.Enabled = true;
-                button2.Enabled = true;
-                button3.Enabled = true;
             }
         }
 

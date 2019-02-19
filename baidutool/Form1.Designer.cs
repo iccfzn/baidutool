@@ -149,11 +149,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label11.Location = new System.Drawing.Point(658, 80);
+            this.label11.Location = new System.Drawing.Point(574, 77);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(389, 12);
+            this.label11.Size = new System.Drawing.Size(473, 12);
             this.label11.TabIndex = 4;
-            this.label11.Text = "由于代理IP随时会失效，请每次刷之前先验证IP，验证IP后会删除无效IP";
+            this.label11.Text = "由于代理IP随时会失效，请每次刷之前先验证IP，验证IP后会删除无效IP（最大线程20）";
             // 
             // button3
             // 

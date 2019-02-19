@@ -34,3 +34,7 @@ D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.exe
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.pdb
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.LoaderForm.resources
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.LoaderForm.resources
+G:\Code\baidutool\baidutool\bin\Debug\baidutool.exe.manifest
+G:\Code\baidutool\baidutool\bin\Debug\baidutool.application
+G:\Code\baidutool\baidutool\obj\Debug\baidutool.exe.manifest
+G:\Code\baidutool\baidutool\obj\Debug\baidutool.application
