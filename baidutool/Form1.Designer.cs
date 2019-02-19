@@ -35,6 +35,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lyqip = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lyqpwd = new System.Windows.Forms.TextBox();
+            this.lyqaccount = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.count = new System.Windows.Forms.TextBox();
@@ -65,12 +71,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lyqaccount = new System.Windows.Forms.TextBox();
-            this.lyqpwd = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lyqip = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -199,6 +199,54 @@
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "关键字(一行一条，支持导入)";
+            // 
+            // lyqip
+            // 
+            this.lyqip.Location = new System.Drawing.Point(950, 27);
+            this.lyqip.Name = "lyqip";
+            this.lyqip.Size = new System.Drawing.Size(126, 21);
+            this.lyqip.TabIndex = 28;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(879, 31);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 12);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "路由器IP";
+            // 
+            // lyqpwd
+            // 
+            this.lyqpwd.Location = new System.Drawing.Point(950, 88);
+            this.lyqpwd.Name = "lyqpwd";
+            this.lyqpwd.Size = new System.Drawing.Size(126, 21);
+            this.lyqpwd.TabIndex = 26;
+            // 
+            // lyqaccount
+            // 
+            this.lyqaccount.Location = new System.Drawing.Point(950, 58);
+            this.lyqaccount.Name = "lyqaccount";
+            this.lyqaccount.Size = new System.Drawing.Size(126, 21);
+            this.lyqaccount.TabIndex = 25;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(879, 94);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "路由器密码";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(879, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 12);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "路由器账号";
             // 
             // label10
             // 
@@ -485,54 +533,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(879, 63);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 12);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "路由器账号";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(879, 94);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
-            this.label13.TabIndex = 24;
-            this.label13.Text = "路由器密码";
-            // 
-            // lyqaccount
-            // 
-            this.lyqaccount.Location = new System.Drawing.Point(950, 58);
-            this.lyqaccount.Name = "lyqaccount";
-            this.lyqaccount.Size = new System.Drawing.Size(126, 21);
-            this.lyqaccount.TabIndex = 25;
-            // 
-            // lyqpwd
-            // 
-            this.lyqpwd.Location = new System.Drawing.Point(950, 88);
-            this.lyqpwd.Name = "lyqpwd";
-            this.lyqpwd.Size = new System.Drawing.Size(126, 21);
-            this.lyqpwd.TabIndex = 26;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(879, 31);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 12);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "路由器IP";
-            // 
-            // lyqip
-            // 
-            this.lyqip.Location = new System.Drawing.Point(950, 27);
-            this.lyqip.Name = "lyqip";
-            this.lyqip.Size = new System.Drawing.Size(126, 21);
-            this.lyqip.TabIndex = 28;
-            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -544,6 +544,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "访问百度";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
