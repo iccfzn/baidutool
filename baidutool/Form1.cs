@@ -31,6 +31,7 @@ namespace baidutool
         List<String> arrText = new List<String>();
         List<String> keyList = new List<String>();
         int Total = 0;
+        Thread thread = null;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtKey;
         private const string TitleInfo = "程序制作：iCC";
@@ -404,16 +405,20 @@ namespace baidutool
                 switch (type)
                 {
                     case 1:
-                        new Thread(() => StartShuaKD(keyList, roundI, keyI, count)).Start();
+                        thread = new Thread(() => StartShuaKD(keyList, roundI, keyI, count));
+                        thread.Start();
                         break;
                     case 2:
-                        new Thread(() => StartShuaLYQ(keyList, roundI, keyI, count, lyqaccount.Text,lyqpwd.Text,lyqip.Text)).Start();
+                        thread = new Thread(() => StartShuaLYQ(keyList, roundI, keyI, count, lyqaccount.Text, lyqpwd.Text, lyqip.Text));
+                        thread.Start();
                         break;
                     case 3:
-                        new Thread(() => StartShuaUA(keyList, roundI, keyI, count)).Start();
+                        thread = new Thread(() => StartShuaUA(keyList, roundI, keyI, count));
+                        thread.Start();
                         break;
                     default:
-                        new Thread(() => StartShua(keyList, roundI, keyI, count)).Start();
+                        thread = new Thread(() => StartShua(keyList, roundI, keyI, count));
+                        thread.Start();
                         break;
                 }
                 button1.Enabled = false;
@@ -423,6 +428,7 @@ namespace baidutool
             else
             {
                 canStop = true;
+                thread.Abort();
                 button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
                 button1.Enabled = true;
