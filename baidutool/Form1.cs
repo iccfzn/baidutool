@@ -396,8 +396,7 @@ namespace baidutool
                     MessageBox.Show("最大次数不可为0！");
                     return;
                 }
-
-                if (keyList.Count < 1)
+                
                     getKeyList();
 
                 button2.Text = "停止刷";
