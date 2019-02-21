@@ -499,10 +499,11 @@
             // 
             // axWebBrowser1
             // 
+            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.axWebBrowser1.Enabled = true;
-            this.axWebBrowser1.Location = new System.Drawing.Point(6, 20);
+            this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
             this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
-            this.axWebBrowser1.Size = new System.Drawing.Size(1103, 388);
+            this.axWebBrowser1.Size = new System.Drawing.Size(1109, 394);
             this.axWebBrowser1.TabIndex = 0;
             // 
             // tabPage2
@@ -540,11 +541,13 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "访问百度";
+            this.Text = "百度下拉关键词优化工具";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -572,7 +575,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private AxSHDocVw.AxWebBrowser axWebBrowser1;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label7;
@@ -602,6 +604,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox lyqip;
         private System.Windows.Forms.Label label14;
+        private AxSHDocVw.AxWebBrowser axWebBrowser1;
     }
 }
 

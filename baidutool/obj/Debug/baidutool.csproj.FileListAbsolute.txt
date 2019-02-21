@@ -38,7 +38,6 @@ G:\Code\baidutool\baidutool\bin\Debug\baidutool.exe.manifest
 G:\Code\baidutool\baidutool\bin\Debug\baidutool.application
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.exe.manifest
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.application
-E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.csprojAssemblyReference.cache
 E:\Ahzqioaoxun\baidutool\baidutool\bin\Debug\baidutool.exe.config
 E:\Ahzqioaoxun\baidutool\baidutool\bin\Debug\baidutool.exe.manifest
 E:\Ahzqioaoxun\baidutool\baidutool\bin\Debug\baidutool.application
