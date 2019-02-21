@@ -444,42 +444,43 @@ namespace baidutool
             arrText.Clear();
             listBox1.Items.Clear();
             #region q
-
-            for (int k = 1; k <= 1; k++)
+            new Thread(() =>
             {
-                string Url = "https://www.xicidaili.com/nn/" + k;
-                try
+                for (int k = 1; k <= 1; k++)
                 {
-                    string strHtml = Utils.GetHtml(Url);
-                    NSoup.Nodes.Document doc = NSoup.NSoupClient.Parse(strHtml);
-                    NSoup.Select.Elements tableEle = doc.GetElementsByTag("table");
-                    foreach (var tableItem in tableEle)
+                    string Url = "https://www.xicidaili.com/nn/" + k;
+                    try
                     {
-                        if (tableItem.Id == "ip_list")
+                        string strHtml = Utils.GetHtml(Url);
+                        NSoup.Nodes.Document doc = NSoup.NSoupClient.Parse(strHtml);
+                        NSoup.Select.Elements tableEle = doc.GetElementsByTag("table");
+                        foreach (var tableItem in tableEle)
                         {
-                            NSoup.Select.Elements trEle = tableItem.GetElementsByTag("tr");
-                            foreach (var trItem in trEle)
+                            if (tableItem.Id == "ip_list")
                             {
-                                NSoup.Select.Elements tdEle = trItem.GetElementsByTag("td");
-                                if (tdEle.Count > 3)
+                                NSoup.Select.Elements trEle = tableItem.GetElementsByTag("tr");
+                                foreach (var trItem in trEle)
                                 {
-                                    string ip = tdEle[1].Text();
-                                    int port = 0;
-                                    string portStr = tdEle[2].Text();
-                                    int.TryParse(portStr, out port);
-                                    arrText.Add(ip + ":" + port);
-                                    listBox1.Items.Add(ip + ":" + port);
+                                    NSoup.Select.Elements tdEle = trItem.GetElementsByTag("td");
+                                    if (tdEle.Count > 3)
+                                    {
+                                        string ip = tdEle[1].Text();
+                                        int port = 0;
+                                        string portStr = tdEle[2].Text();
+                                        int.TryParse(portStr, out port);
+                                        arrText.Add(ip + ":" + port);
+                                        listBox1.Invoke(new Action(() => listBox1.Items.Add(ip + ":" + port)));
+                                    }
                                 }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-
+            }).Start();
             #endregion
         }
 
