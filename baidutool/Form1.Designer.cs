@@ -67,10 +67,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.axWebBrowser1 = new AxSHDocVw.AxWebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.axWebBrowser1 = new AxSHDocVw.AxWebBrowser();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -78,9 +78,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -463,7 +463,7 @@
             this.txtKey.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtKey.Size = new System.Drawing.Size(276, 134);
             this.txtKey.TabIndex = 0;
-            this.txtKey.Text = "123";
+            this.txtKey.Text = "123\r\n巧讯科技\r\n软件开发\r\n软件测试";
             // 
             // tabControl1
             // 
@@ -497,15 +497,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "浏览器";
             // 
-            // axWebBrowser1
-            // 
-            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWebBrowser1.Enabled = true;
-            this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
-            this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
-            this.axWebBrowser1.Size = new System.Drawing.Size(1109, 394);
-            this.axWebBrowser1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -534,6 +525,15 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // axWebBrowser1
+            // 
+            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWebBrowser1.Enabled = true;
+            this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
+            this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
+            this.axWebBrowser1.Size = new System.Drawing.Size(1109, 394);
+            this.axWebBrowser1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -558,10 +558,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
