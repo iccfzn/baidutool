@@ -193,5 +193,13 @@ namespace baidutool
             string ipAddress = myEntry.AddressList[0].ToString();
             return ipAddress;
         }
+
+        public static void WriteLog(string param1)
+        {
+            System.IO.File.AppendAllText(
+            "system_log.log", // 日志文件名
+            string.Format("{0}=>{1}\r\n", DateTime.Now, param1),
+            Encoding.Default);
+        }
     }
 }

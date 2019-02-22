@@ -30,10 +30,9 @@ namespace baidutool
         private System.Windows.Forms.Button button3;
         List<String> arrText = new List<String>();
         List<String> keyList = new List<String>();
-        int Total = 0;
+        int Total = 0, logCount = 1;
         Thread thread = null;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtKey;
         private const string TitleInfo = "程序制作：iCC";
         private System.Windows.Forms.ListBox listBox1;
         private volatile bool canStop = false;
@@ -54,6 +53,7 @@ namespace baidutool
         /// </summary>
         private void StartShuaUA(List<string> list,int roundI,int keyI,int max)
         {
+            logCount = this.dataGridView1.RowCount;
             // 等待“停止”信号，如果没有收到信号则执行 
             roundI = roundI * 1000;
             keyI = keyI * 1000;
@@ -65,20 +65,26 @@ namespace baidutool
                         break;
                     for (int j = 0; j < arrText.Count; j++)
                     {
-                        //this.listBox1.Invoke(new Action(()=> listBox1.SetSelected(j, true)));
+                        //将IE浏览器代理改为当前代理IP
                         if (Utils.RefreshIESettings(arrText[j].ToString()))
                         {
-                            foreach (var item in list)
+                            for (int k = 0; k < list.Count; k++)
                             {
+                                string item = list[k];
                                 // 等待“停止”信号，如果没有收到信号则执行 
                                 if (canStop)
                                     break;
-                                toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用代理IP：" + arrText[j].ToString() + "访问";
                                 string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                                 System.Object nullObject = 0;
                                 string strTemp = String.Empty;
                                 System.Object nullObjStr = strTemp;
+                                //操作浏览器访问页面
                                 axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
+                                //写入表格
+                                this.dataGridView1.Rows.Add(logCount, item, "成功", q, arrText[j].ToString());
+                                //写入日志
+                                Utils.WriteLog("第" + q + "次，关键字：" + item + "，正在使用代理IP"+ arrText[j].ToString() + "访问");
+                                logCount++;
                                 Thread.Sleep(keyI);
                             }
                         }
@@ -135,6 +141,7 @@ namespace baidutool
         /// </summary>
         private void StartShua(List<string> list, int roundI, int keyI, int max)
         {
+            logCount = this.dataGridView1.RowCount;
             roundI = roundI * 1000;
             keyI = keyI * 1000;
             if (list.Count > 0 && max > 0)
@@ -143,18 +150,23 @@ namespace baidutool
                 {
                     if (canStop)
                         break;
-                    foreach (var item in list)
+                    for (int j = 0; j < list.Count; j++)
                     {
+                        string item = list[j];
                         // 等待“停止”信号，如果没有收到信号则执行 
                         if (canStop)
                             break;
-                        toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问";
+                        //toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问";
                         string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                         System.Object nullObject = 0;
                         string strTemp = String.Empty;
                         System.Object nullObjStr = strTemp;
                         axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
+                        this.dataGridView1.Rows.Add(logCount, item, "成功", q, "本地IP");
+                        Utils.WriteLog("第" + q + "次，关键字：" + item + "，正在使用本地IP访问");
+                        logCount++;
                         Thread.Sleep(keyI);
+
                     }
                     Thread.Sleep(roundI);
                 }
@@ -208,6 +220,7 @@ namespace baidutool
         /// </summary>
         private void StartShuaLYQ(List<string> list, int roundI, int keyI, int max,string account,string pwd,string ip)
         {
+            int count = 1;
             // 等待“停止”信号，如果没有收到信号则执行 
             roundI = roundI * 1000;
             keyI = keyI * 1000;
@@ -222,12 +235,14 @@ namespace baidutool
                         // 等待“停止”信号，如果没有收到信号则执行 
                         if (canStop)
                             break;
-                        toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用路由器换ip访问";
                         string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                         System.Object nullObject = 0;
                         string strTemp = String.Empty;
                         System.Object nullObjStr = strTemp;
                         axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
+                        this.dataGridView1.Rows.Add(count, item, "成功", q, "路由换IP");
+                        Utils.WriteLog("第" + q + "次，关键字：" + item + "，正在使用路由换IP访问");
+                        count++;
                         Thread.Sleep(keyI);
                     }
                     string result = Utils.Disconnect(ip, account, pwd);
@@ -299,15 +314,7 @@ namespace baidutool
         }
         
         /// <summary>
-        /// 宽带刷
-        /// </summary>
-        private void StartShuaKD(List<string> list, int roundI, int keyI, int max)
-        {
-           
-        }
-
-        /// <summary>
-        /// 导入
+        /// 导入代理IP
         /// </summary>
         private void button1_Click_1(object sender, System.EventArgs e)
         {
@@ -317,7 +324,7 @@ namespace baidutool
             {
                 string strPath, strLine = "";
                 strPath = openFileDialog1.FileName.ToString();
-                StreamReader sr = new StreamReader(strPath);
+                StreamReader sr = new StreamReader(strPath, Encoding.Default);
                 while (strLine != null)
                 {
                     strLine = sr.ReadLine();
@@ -396,17 +403,16 @@ namespace baidutool
                     MessageBox.Show("最大次数不可为0！");
                     return;
                 }
-                
-                    getKeyList();
+                if(keyList.Count < 1)
+                {
+                    MessageBox.Show("请在设置中加入关键字！");
+                    return;
+                }
 
                 button2.Text = "停止刷";
                 canStop = false;
                 switch (type)
                 {
-                    case 1:
-                        thread = new Thread(() => StartShuaKD(keyList, roundI, keyI, count));
-                        thread.Start();
-                        break;
                     case 2:
                         thread = new Thread(() => StartShuaLYQ(keyList, roundI, keyI, count, lyqaccount.Text, lyqpwd.Text, lyqip.Text));
                         thread.Start();
@@ -485,7 +491,7 @@ namespace baidutool
         }
 
         /// <summary>
-        /// 导入代理IP
+        /// 导入关键字
         /// </summary>
         private void keyImport_Click(object sender, EventArgs e)
         {
@@ -493,13 +499,13 @@ namespace baidutool
             {
                 string strPath, strLine = "";
                 strPath = openFileDialog1.FileName.ToString();
-                StreamReader sr = new StreamReader(strPath);
+                StreamReader sr = new StreamReader(strPath, Encoding.Default);
                 while (strLine != null)
                 {
                     strLine = sr.ReadLine();
                     if (strLine != null)
                     {
-                        txtKey.AppendText(strLine);
+                        txtKey.AppendText(strLine+"\r\n");
                     }
                 }
                 sr.Close();
@@ -587,18 +593,90 @@ namespace baidutool
         private List<String> getKeyList()
         {
             keyList.Clear();
+            listBox2.Items.Clear();
+            string mainKey = textBox1.Text;
+            if (!string.IsNullOrEmpty(mainKey))
+            {
+                listBox2.Items.Add(mainKey);
+                keyList.Add(mainKey);
+            }
             string listStr = txtKey.Text;
             string[] data = listStr.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             foreach (string item in data)
             {
-                keyList.Add(item);
+                if (!string.IsNullOrEmpty(item))
+                {
+                    listBox2.Items.Add(mainKey);
+                    keyList.Add(item);
+                }
             }
             return keyList;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //跨线程访问控件
+            Control.CheckForIllegalCrossThreadCalls = false;
+        }
 
+        /// <summary>
+        /// 浏览器的显示与隐藏
+        /// </summary>
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (button4.Text == "合上")
+            {
+                button4.Text = "打开";
+                axWebBrowser1.Visible = false;
+            }
+            else
+            {
+                button4.Text = "合上";
+                axWebBrowser1.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// 关键字加入任务
+        /// </summary>
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //主关键字
+            string mainKey = textBox1.Text;
+            if (!string.IsNullOrEmpty(mainKey))
+            {
+                listBox2.Items.Add(mainKey);
+                keyList.Add(mainKey);
+            }
+            //副关键字
+            string listStr = txtKey.Text;
+            string[] data = listStr.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            foreach (string item in data)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    listBox2.Items.Add(item);
+                    keyList.Add(item);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 清空日志
+        /// </summary>
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource != null)
+            {
+                DataTable dt = (DataTable)dataGridView1.DataSource;
+                dt.Rows.Clear();
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                dataGridView1.Rows.Clear();
+            }
+            logCount = 1;
         }
     }
 }
