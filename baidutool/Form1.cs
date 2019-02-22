@@ -484,6 +484,9 @@ namespace baidutool
             #endregion
         }
 
+        /// <summary>
+        /// 导入代理IP
+        /// </summary>
         private void keyImport_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -503,6 +506,9 @@ namespace baidutool
             }
         }
 
+        /// <summary>
+        /// 清除关键字
+        /// </summary>
         private void clear_Click(object sender, EventArgs e)
         {
             this.txtKey.Clear();
@@ -558,6 +564,9 @@ namespace baidutool
             }
         }
 
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("关闭窗体后，程序会退出！！", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -571,6 +580,10 @@ namespace baidutool
             }
         }
 
+        /// <summary>
+        /// 获取关键字列表
+        /// </summary>
+        /// <returns></returns>
         private List<String> getKeyList()
         {
             keyList.Clear();

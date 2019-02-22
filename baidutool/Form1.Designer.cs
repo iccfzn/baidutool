@@ -67,10 +67,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.axWebBrowser1 = new AxSHDocVw.AxWebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.axWebBrowser1 = new AxSHDocVw.AxWebBrowser();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -78,9 +79,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -469,6 +470,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -496,6 +498,15 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "浏览器";
+            // 
+            // axWebBrowser1
+            // 
+            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWebBrowser1.Enabled = true;
+            this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
+            this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
+            this.axWebBrowser1.Size = new System.Drawing.Size(1109, 394);
+            this.axWebBrowser1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -525,14 +536,14 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // axWebBrowser1
+            // tabPage3
             // 
-            this.axWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWebBrowser1.Enabled = true;
-            this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
-            this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
-            this.axWebBrowser1.Size = new System.Drawing.Size(1109, 394);
-            this.axWebBrowser1.TabIndex = 0;
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1127, 597);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "设置";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -558,10 +569,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,6 +616,7 @@
         private System.Windows.Forms.TextBox lyqip;
         private System.Windows.Forms.Label label14;
         private AxSHDocVw.AxWebBrowser axWebBrowser1;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 
