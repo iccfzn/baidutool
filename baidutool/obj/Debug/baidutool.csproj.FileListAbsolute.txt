@@ -63,3 +63,5 @@ D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.exe.manifest
 D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.application
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.exe.manifest
 D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.application
+G:\Code\baidutool\baidutool\obj\Debug\baidutool.ip.resources
+G:\Code\baidutool\baidutool\obj\Debug\baidutool.Setting.resources
