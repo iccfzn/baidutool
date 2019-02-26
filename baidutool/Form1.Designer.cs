@@ -38,7 +38,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtKey = new System.Windows.Forms.TextBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -58,6 +57,7 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -94,9 +94,9 @@
             this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.txtKey);
-            this.groupBox5.Controls.Add(this.listBox2);
             this.groupBox5.Controls.Add(this.button2);
             this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.listBox2);
             this.groupBox5.Location = new System.Drawing.Point(7, 6);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(833, 215);
@@ -126,7 +126,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(459, 179);
+            this.button6.Location = new System.Drawing.Point(215, 170);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(84, 23);
             this.button6.TabIndex = 59;
@@ -136,7 +136,7 @@
             // 
             // keyImport
             // 
-            this.keyImport.Location = new System.Drawing.Point(340, 179);
+            this.keyImport.Location = new System.Drawing.Point(96, 170);
             this.keyImport.Name = "keyImport";
             this.keyImport.Size = new System.Drawing.Size(113, 23);
             this.keyImport.TabIndex = 58;
@@ -157,7 +157,7 @@
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(253, 179);
+            this.clear.Location = new System.Drawing.Point(9, 170);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(81, 23);
             this.clear.TabIndex = 57;
@@ -168,7 +168,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(251, 52);
+            this.label16.Location = new System.Drawing.Point(7, 43);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
             this.label16.TabIndex = 56;
@@ -177,7 +177,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(251, 24);
+            this.label15.Location = new System.Drawing.Point(7, 15);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 12);
             this.label15.TabIndex = 55;
@@ -185,7 +185,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(322, 20);
+            this.textBox1.Location = new System.Drawing.Point(78, 11);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(221, 21);
             this.textBox1.TabIndex = 54;
@@ -194,24 +194,13 @@
             // txtKey
             // 
             this.txtKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtKey.Location = new System.Drawing.Point(322, 50);
+            this.txtKey.Location = new System.Drawing.Point(78, 41);
             this.txtKey.Multiline = true;
             this.txtKey.Name = "txtKey";
             this.txtKey.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtKey.Size = new System.Drawing.Size(221, 123);
             this.txtKey.TabIndex = 53;
             this.txtKey.Text = "\r软件开发\r\n软件测试";
-            // 
-            // listBox2
-            // 
-            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listBox2.ItemHeight = 12;
-            this.listBox2.Location = new System.Drawing.Point(6, 20);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(239, 182);
-            this.listBox2.TabIndex = 9;
-            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
             // 
             // groupBox6
             // 
@@ -383,6 +372,18 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // listBox2
+            // 
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(305, 11);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(223, 182);
+            this.listBox2.TabIndex = 9;
+            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
@@ -429,7 +430,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyWord;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
@@ -445,6 +445,7 @@
         private System.Windows.Forms.TextBox txtKey;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 

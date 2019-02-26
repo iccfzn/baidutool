@@ -391,7 +391,8 @@ namespace baidutool
             if (MessageBox.Show("关闭窗体后，程序会退出！！", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 e.Cancel = false;
-                System.Environment.Exit(0);
+                base.Dispose();
+                //System.Environment.Exit(0);
             }
             else
             {
@@ -496,10 +497,26 @@ namespace baidutool
 
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
         {
-            e.DrawBackground();
-            Brush myBrush = Brushes.Black; //初始化字体颜色=黑色
+            //e.DrawBackground();
+            //Brush myBrush = Brushes.Black; //初始化字体颜色=黑色
             this.listBox2.ItemHeight = 20; //设置项高，根据具体需要设置值      
-            e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, null);
+            //e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, null);
+
+            Brush myBrush = Brushes.Black;
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                myBrush = new SolidBrush(Color.FromArgb(0, 0, 255));//选中时背景颜色
+            }
+            else//没有选中时的背景颜色
+            {
+                myBrush = new SolidBrush(Color.White);
+            }
+            e.Graphics.FillRectangle(myBrush, e.Bounds);//填满矩形背景颜色
+            e.Graphics.DrawRectangle(new Pen(new SolidBrush(e.ForeColor)), e.Bounds);
+            e.DrawFocusRectangle();//焦点框
+            StringFormat stringformat = StringFormat.GenericDefault;
+            stringformat.LineAlignment = StringAlignment.Center;
+            e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, stringformat);
         }
 
 
