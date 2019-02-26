@@ -68,7 +68,8 @@ namespace baidutool
                                 // 等待“停止”信号，如果没有收到信号则执行 
                                 if (canStop)
                                     break;
-                                int index = this.dataGridView1.Rows.Add(logCount, item, "进行中", q, PublicValue.arrText[j].ToString(), DateTime.Now.ToString());
+                                int index = 0;
+                                this.dataGridView1.Invoke(new Action(() =>  index = this.dataGridView1.Rows.Add(logCount, item, "进行中", q, PublicValue.arrText[j].ToString(), DateTime.Now.ToString())));
                                 string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                                 System.Object nullObject = 0;
                                 string strTemp = String.Empty;
@@ -80,7 +81,7 @@ namespace baidutool
                                 logCount++;
                                 Thread.Sleep(keyI);
                                 //写入表格
-                                this.dataGridView1.Rows[index].Cells[2].Value = "完成";
+                                this.dataGridView1.Invoke(new Action(() => this.dataGridView1.Rows[index].Cells[2].Value = "完成"));
                             }
                         }
                     }
@@ -143,7 +144,8 @@ namespace baidutool
                         // 等待“停止”信号，如果没有收到信号则执行 
                         if (canStop)
                             break;
-                        int index = this.dataGridView1.Rows.Add(logCount, item, "进行中", q, "本地IP",DateTime.Now.ToString());
+                        int index = 0;
+                        this.dataGridView1.Invoke(new Action(()=> index = dataGridView1.Rows.Add(logCount, item, "进行中", q, "本地IP",DateTime.Now.ToString())));
                         //toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问";
                         string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                         System.Object nullObject = 0;
@@ -154,7 +156,7 @@ namespace baidutool
                         Utils.WriteLog("第" + q + "次，关键字：" + item + "，正在使用本地IP访问");
                         logCount++;
                         Thread.Sleep(keyI);
-                        this.dataGridView1.Rows[index].Cells[2].Value = "完成";
+                        this.dataGridView1.Invoke(new Action(() => this.dataGridView1.Rows[index].Cells[2].Value = "完成"));
                     }
                     Thread.Sleep(roundI);
                 }
@@ -518,8 +520,7 @@ namespace baidutool
             stringformat.LineAlignment = StringAlignment.Center;
             e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, stringformat);
         }
-
-
+        
         /// <summary>
         /// 清空日志
         /// </summary>
