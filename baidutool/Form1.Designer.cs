@@ -41,6 +41,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,7 +58,7 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -73,7 +74,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(691, 149);
+            this.button2.Location = new System.Drawing.Point(691, 164);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(129, 57);
             this.button2.TabIndex = 2;
@@ -84,6 +85,7 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Silver;
+            this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.button3);
             this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.button6);
@@ -99,7 +101,7 @@
             this.groupBox5.Controls.Add(this.listBox2);
             this.groupBox5.Location = new System.Drawing.Point(7, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(833, 215);
+            this.groupBox5.Size = new System.Drawing.Size(833, 227);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "关键字";
@@ -126,7 +128,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(215, 170);
+            this.button6.Location = new System.Drawing.Point(215, 198);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(84, 23);
             this.button6.TabIndex = 59;
@@ -136,7 +138,7 @@
             // 
             // keyImport
             // 
-            this.keyImport.Location = new System.Drawing.Point(96, 170);
+            this.keyImport.Location = new System.Drawing.Point(96, 198);
             this.keyImport.Name = "keyImport";
             this.keyImport.Size = new System.Drawing.Size(113, 23);
             this.keyImport.TabIndex = 58;
@@ -147,7 +149,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(563, 174);
+            this.button4.Location = new System.Drawing.Point(563, 189);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 32);
             this.button4.TabIndex = 7;
@@ -157,7 +159,7 @@
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(9, 170);
+            this.clear.Location = new System.Drawing.Point(9, 198);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(81, 23);
             this.clear.TabIndex = 57;
@@ -198,7 +200,7 @@
             this.txtKey.Multiline = true;
             this.txtKey.Name = "txtKey";
             this.txtKey.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtKey.Size = new System.Drawing.Size(221, 123);
+            this.txtKey.Size = new System.Drawing.Size(221, 151);
             this.txtKey.TabIndex = 53;
             this.txtKey.Text = "\r软件开发\r\n软件测试";
             // 
@@ -235,6 +237,18 @@
             this.radioButton3.Text = "切换代理IP";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
+            // listBox2
+            // 
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox2.ItemHeight = 26;
+            this.listBox2.Location = new System.Drawing.Point(305, 11);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(223, 184);
+            this.listBox2.TabIndex = 9;
+            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -260,9 +274,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.axWebBrowser1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 227);
+            this.groupBox1.Location = new System.Drawing.Point(3, 239);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(840, 364);
+            this.groupBox1.Size = new System.Drawing.Size(840, 352);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "浏览器";
@@ -273,7 +287,7 @@
             this.axWebBrowser1.Enabled = true;
             this.axWebBrowser1.Location = new System.Drawing.Point(3, 17);
             this.axWebBrowser1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser1.OcxState")));
-            this.axWebBrowser1.Size = new System.Drawing.Size(834, 344);
+            this.axWebBrowser1.Size = new System.Drawing.Size(834, 332);
             this.axWebBrowser1.TabIndex = 0;
             // 
             // tabPage4
@@ -372,17 +386,15 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // listBox2
+            // button5
             // 
-            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.listBox2.ItemHeight = 12;
-            this.listBox2.Location = new System.Drawing.Point(305, 11);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(223, 182);
-            this.listBox2.TabIndex = 9;
-            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
+            this.button5.Location = new System.Drawing.Point(421, 198);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(107, 23);
+            this.button5.TabIndex = 62;
+            this.button5.Text = "清空任务列表";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -446,6 +458,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button5;
     }
 }
 

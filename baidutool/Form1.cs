@@ -87,6 +87,8 @@ namespace baidutool
                     }
                     Thread.Sleep(roundI);
                 }
+                keyList.Clear();
+                listBox2.Items.Clear();
                 button2.Invoke(new EventHandler(delegate
                 {
                     button2.Text = "开始刷";
@@ -160,6 +162,9 @@ namespace baidutool
                     }
                     Thread.Sleep(roundI);
                 }
+
+                keyList.Clear();
+                listBox2.Items.Clear();
                 button2.Invoke(new EventHandler(delegate
                 {
                     button2.Text = "开始刷";
@@ -500,8 +505,7 @@ namespace baidutool
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
         {
             //e.DrawBackground();
-            //Brush myBrush = Brushes.Black; //初始化字体颜色=黑色
-            this.listBox2.ItemHeight = 20; //设置项高，根据具体需要设置值      
+            //Brush myBrush = Brushes.Black; //初始化字体颜色=黑色    
             //e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, null);
 
             Brush myBrush = Brushes.Black;
@@ -518,9 +522,17 @@ namespace baidutool
             e.DrawFocusRectangle();//焦点框
             StringFormat stringformat = StringFormat.GenericDefault;
             stringformat.LineAlignment = StringAlignment.Center;
-            e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, stringformat);
+            if(e.Index > -1)
+                e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, stringformat);
         }
-        
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            keyList.Clear();
+            listBox2.Items.Clear();
+        }
+
         /// <summary>
         /// 清空日志
         /// </summary>
