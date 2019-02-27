@@ -346,6 +346,7 @@ namespace baidutool
                 }
                 button1.Enabled = false;
                 button3.Enabled = false;
+                button7.Enabled = false;
             }
             else
             {
@@ -355,6 +356,7 @@ namespace baidutool
                 toolStripStatusLabel1.Text = "";
                 button1.Enabled = true;
                 button3.Enabled = true;
+                button7.Enabled = true;
             }
         }
 
