@@ -66,6 +66,5 @@ D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.application
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.ip.resources
 G:\Code\baidutool\baidutool\obj\Debug\baidutool.Setting.resources
 E:\Ahzqioaoxun\baidutool\baidutool\bin\Debug\System.Net.Http.dll
-E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.csprojAssemblyReference.cache
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.ip.resources
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.Setting.resources
