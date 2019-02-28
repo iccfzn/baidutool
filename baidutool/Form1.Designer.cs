@@ -28,6 +28,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -50,15 +51,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -105,6 +105,16 @@
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "关键字";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(421, 198);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(107, 23);
+            this.button5.TabIndex = 62;
+            this.button5.Text = "清空任务列表";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
@@ -338,38 +348,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(828, 517);
             this.dataGridView1.TabIndex = 0;
             // 
-            // id
-            // 
-            this.id.HeaderText = "序号";
-            this.id.Name = "id";
-            // 
-            // keyWord
-            // 
-            this.keyWord.HeaderText = "关键字";
-            this.keyWord.Name = "keyWord";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "状态";
-            this.status.Name = "status";
-            // 
-            // currCount
-            // 
-            this.currCount.HeaderText = "当前次数";
-            this.currCount.Name = "currCount";
-            // 
-            // currIP
-            // 
-            this.currIP.HeaderText = "当前IP";
-            this.currIP.Name = "currIP";
-            this.currIP.Width = 150;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "时间";
-            this.date.Name = "date";
-            this.date.Width = 150;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -386,15 +364,46 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // button5
+            // id
             // 
-            this.button5.Location = new System.Drawing.Point(421, 198);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 23);
-            this.button5.TabIndex = 62;
-            this.button5.Text = "清空任务列表";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "序号";
+            this.id.Name = "id";
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.id.Width = 80;
+            // 
+            // keyWord
+            // 
+            this.keyWord.FillWeight = 30F;
+            this.keyWord.HeaderText = "关键字";
+            this.keyWord.Name = "keyWord";
+            // 
+            // status
+            // 
+            this.status.FillWeight = 20F;
+            this.status.HeaderText = "状态";
+            this.status.Name = "status";
+            // 
+            // currCount
+            // 
+            this.currCount.FillWeight = 15F;
+            this.currCount.HeaderText = "当前次数";
+            this.currCount.Name = "currCount";
+            this.currCount.Width = 80;
+            // 
+            // currIP
+            // 
+            this.currIP.FillWeight = 30F;
+            this.currIP.HeaderText = "当前IP";
+            this.currIP.Name = "currIP";
+            this.currIP.Width = 150;
+            // 
+            // date
+            // 
+            this.date.FillWeight = 30F;
+            this.date.HeaderText = "时间";
+            this.date.Name = "date";
+            this.date.Width = 150;
             // 
             // Form1
             // 
@@ -402,14 +411,13 @@
             this.ClientSize = new System.Drawing.Size(881, 658);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "百度下拉关键词优化工具";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -442,12 +450,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn keyWord;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn currCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn currIP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button keyImport;
         private System.Windows.Forms.Button clear;
@@ -459,6 +461,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn keyWord;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currIP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
     }
 }
 

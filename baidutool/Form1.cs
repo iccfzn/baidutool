@@ -21,6 +21,8 @@ namespace baidutool
     /// </summary>
     public partial class Form1 : Form
     {
+
+        AutoSizeFormClass asc = new AutoSizeFormClass();
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.ComponentModel.IContainer components;
@@ -69,7 +71,15 @@ namespace baidutool
                                 if (canStop)
                                     break;
                                 int index = 0;
-                                this.dataGridView1.Invoke(new Action(() =>  index = this.dataGridView1.Rows.Add(logCount, item, "进行中", q, PublicValue.arrText[j].ToString(), DateTime.Now.ToString())));
+                                DataGridViewRow dr = new DataGridViewRow();
+                                dr.CreateCells(dataGridView1);
+                                dr.Cells[0].Value = logCount;
+                                dr.Cells[1].Value = item;
+                                dr.Cells[2].Value = "进行中";
+                                dr.Cells[3].Value = (j+1);
+                                dr.Cells[4].Value = PublicValue.arrText[j].ToString();
+                                dr.Cells[5].Value = DateTime.Now.ToString();
+                                this.dataGridView1.Invoke(new Action(() => dataGridView1.Rows.Insert(0, dr)));
                                 string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                                 System.Object nullObject = 0;
                                 string strTemp = String.Empty;
@@ -77,7 +87,7 @@ namespace baidutool
                                 //操作浏览器访问页面
                                 axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
                                 //写入日志
-                                Utils.WriteLog("第" + q + "次，关键字：" + item + "，正在使用代理IP"+ PublicValue.arrText[j].ToString() + "访问");
+                                Utils.WriteLog("第" + (j + 1) + "次，关键字：" + item + "，正在使用代理IP"+ PublicValue.arrText[j].ToString() + "访问");
                                 logCount++;
                                 Thread.Sleep(keyI);
                                 //写入表格
@@ -147,7 +157,15 @@ namespace baidutool
                         if (canStop)
                             break;
                         int index = 0;
-                        this.dataGridView1.Invoke(new Action(()=> index = dataGridView1.Rows.Add(logCount, item, "进行中", q, "本地IP",DateTime.Now.ToString())));
+                        DataGridViewRow dr = new DataGridViewRow();
+                        dr.CreateCells(dataGridView1);
+                        dr.Cells[0].Value = logCount;
+                        dr.Cells[1].Value = item;
+                        dr.Cells[2].Value = "进行中";
+                        dr.Cells[3].Value = q;
+                        dr.Cells[4].Value = "本地IP";
+                        dr.Cells[5].Value = DateTime.Now.ToString();
+                        this.dataGridView1.Invoke(new Action(()=>dataGridView1.Rows.Insert(0, dr)));
                         //toolStripStatusLabel1.Text = "第" + q + "次，关键字：" + item + "，正在使用本地IP访问";
                         string url = strUrl + "wd=" + System.Web.HttpUtility.HtmlEncode(item);
                         System.Object nullObject = 0;
@@ -346,6 +364,7 @@ namespace baidutool
                 }
                 button1.Enabled = false;
                 button3.Enabled = false;
+                button5.Enabled = false;
                 button7.Enabled = false;
             }
             else
@@ -356,6 +375,7 @@ namespace baidutool
                 toolStripStatusLabel1.Text = "";
                 button1.Enabled = true;
                 button3.Enabled = true;
+                button5.Enabled = false;
                 button7.Enabled = true;
             }
         }
@@ -438,8 +458,15 @@ namespace baidutool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            asc.controllInitializeSize(this);
             //跨线程访问控件
             Control.CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            asc.controlAutoSize(this);
         }
 
         /// <summary>
