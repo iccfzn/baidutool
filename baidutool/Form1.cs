@@ -61,11 +61,16 @@ namespace baidutool
                         break;
                     for (int j = 0; j < PublicValue.arrText.Count; j++)
                     {
+                        if (canStop)
+                            break;
                         //将IE浏览器代理改为当前代理IP
                         if (Utils.RefreshIESettings(PublicValue.arrText[j].ToString()))
                         {
                             for (int k = 0; k < list.Count; k++)
                             {
+
+                                if (j >= max)
+                                    canStop = true;
                                 string item = list[k];
                                 // 等待“停止”信号，如果没有收到信号则执行 
                                 if (canStop)
@@ -99,37 +104,23 @@ namespace baidutool
                 }
                 keyList.Clear();
                 listBox2.Items.Clear();
-                button2.Invoke(new EventHandler(delegate
-                {
-                    button2.Text = "开始刷";
-                }));
+                button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
-                button1.Invoke(new EventHandler(delegate
-                {
-                    button1.Enabled = true;
-                }));
-                button3.Invoke(new EventHandler(delegate
-                {
-                    button3.Enabled = true;
-                }));
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
+                button7.Enabled = true;
             }
             else
             {
-                MessageBox.Show("请输入词条并设置最大次数！"); canStop = true;
-                button2.Invoke(new EventHandler(delegate
-                {
-                    button2.Text = "开始刷";
-                }));
+                MessageBox.Show("请输入词条并设置最大次数！");
+                canStop = true;
+                button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
-                button1.Invoke(new EventHandler(delegate
-                {
-                    button1.Enabled = true;
-                }));
-                button3.Invoke(new EventHandler(delegate
-                {
-                    button3.Enabled = true;
-                }));
-                
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
+                button7.Enabled = true;
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -183,37 +174,23 @@ namespace baidutool
 
                 keyList.Clear();
                 listBox2.Items.Clear();
-                button2.Invoke(new EventHandler(delegate
-                {
-                    button2.Text = "开始刷";
-                }));
+                button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
-                button1.Invoke(new EventHandler(delegate
-                {
-                    button1.Enabled = true;
-                }));
-                button3.Invoke(new EventHandler(delegate
-                {
-                    button3.Enabled = true;
-                }));
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
+                button7.Enabled = true;
             }
             else
             {
                 MessageBox.Show("请输入词条并设置最大次数！");
                 canStop = true;
-                button2.Invoke(new EventHandler(delegate
-                {
-                    button2.Text = "开始刷";
-                }));
+                button2.Text = "开始刷";
                 toolStripStatusLabel1.Text = "";
-                button1.Invoke(new EventHandler(delegate
-                {
-                    button1.Enabled = true;
-                }));
-                button3.Invoke(new EventHandler(delegate
-                {
-                    button3.Enabled = true;
-                }));
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
+                button7.Enabled = true;
             }
             // 此时已经收到停止信号，可以在此释放资源并 
             // 初始化变量 
@@ -375,7 +352,7 @@ namespace baidutool
                 toolStripStatusLabel1.Text = "";
                 button1.Enabled = true;
                 button3.Enabled = true;
-                button5.Enabled = false;
+                button5.Enabled = true;
                 button7.Enabled = true;
             }
         }
@@ -533,10 +510,6 @@ namespace baidutool
 
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //e.DrawBackground();
-            //Brush myBrush = Brushes.Black; //初始化字体颜色=黑色    
-            //e.Graphics.DrawString(listBox2.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, null);
-
             Brush myBrush = Brushes.Black;
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             {
