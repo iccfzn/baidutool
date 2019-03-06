@@ -56,7 +56,6 @@ E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.csproj.GenerateResource.c
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.csproj.CoreCompileInputs.cache
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.exe.manifest
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.application
-E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.csproj.CopyComplete
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.exe
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.pdb
 D:\Code\private\baidutool\baidutool\bin\Debug\baidutool.exe.manifest
