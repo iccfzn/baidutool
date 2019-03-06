@@ -68,3 +68,5 @@ G:\Code\baidutool\baidutool\obj\Debug\baidutool.Setting.resources
 E:\Ahzqioaoxun\baidutool\baidutool\bin\Debug\System.Net.Http.dll
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.ip.resources
 E:\Ahzqioaoxun\baidutool\baidutool\obj\Debug\baidutool.Setting.resources
+D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.ip.resources
+D:\Code\private\baidutool\baidutool\obj\Debug\baidutool.Setting.resources

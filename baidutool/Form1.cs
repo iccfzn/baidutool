@@ -132,6 +132,7 @@ namespace baidutool
         /// </summary>
         private void StartShua(List<string> list, int roundI, int keyI, int max)
         {
+            Utils.RefreshIESettings("127.0.0.1:1080");
             logCount = this.dataGridView1.RowCount;
             roundI = roundI * 1000;
             keyI = keyI * 1000;
