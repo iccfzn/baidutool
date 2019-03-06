@@ -55,6 +55,7 @@ namespace baidutool
             keyI = keyI * 1000;
             if (PublicValue.arrText.Count > 0 && list.Count > 0 && max > 0)
             {
+                int z = 0;
                 for (int q = 1; q <= max; q++)
                 {
                     if (canStop)
@@ -63,13 +64,13 @@ namespace baidutool
                     {
                         if (canStop)
                             break;
+                        z++;
                         //将IE浏览器代理改为当前代理IP
                         if (Utils.RefreshIESettings(PublicValue.arrText[j].ToString()))
                         {
                             for (int k = 0; k < list.Count; k++)
                             {
-
-                                if (j >= max)
+                                if (z > max)
                                     canStop = true;
                                 string item = list[k];
                                 // 等待“停止”信号，如果没有收到信号则执行 
@@ -81,7 +82,7 @@ namespace baidutool
                                 dr.Cells[0].Value = logCount;
                                 dr.Cells[1].Value = item;
                                 dr.Cells[2].Value = "进行中";
-                                dr.Cells[3].Value = (j+1);
+                                dr.Cells[3].Value = z;
                                 dr.Cells[4].Value = PublicValue.arrText[j].ToString();
                                 dr.Cells[5].Value = DateTime.Now.ToString();
                                 this.dataGridView1.Invoke(new Action(() => dataGridView1.Rows.Insert(0, dr)));
@@ -92,7 +93,7 @@ namespace baidutool
                                 //操作浏览器访问页面
                                 axWebBrowser1.Invoke(new Action(() => axWebBrowser1.Navigate(url, ref nullObject, ref nullObjStr, ref nullObjStr, ref nullObjStr)));
                                 //写入日志
-                                Utils.WriteLog("第" + (j + 1) + "次，关键字：" + item + "，正在使用代理IP"+ PublicValue.arrText[j].ToString() + "访问");
+                                Utils.WriteLog("第" +z + "次，关键字：" + item + "，正在使用代理IP"+ PublicValue.arrText[j].ToString() + "访问");
                                 logCount++;
                                 Thread.Sleep(keyI);
                                 //写入表格
